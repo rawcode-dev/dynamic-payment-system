@@ -1,4 +1,4 @@
-package com.rawcode_dev.dynamic_payment_system;
+package com.rawCodeDev.dynamicPaymentSystem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
