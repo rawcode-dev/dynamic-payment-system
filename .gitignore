@@ -1,0 +1,34 @@
+# Ignore Maven and Gradle directories
+/target/
+/build/
+
+# Ignore application properties and environment files
+# *.properties
+# *.yml
+# *.env
+
+# Ignore IntelliJ and Eclipse IDE files
+.idea/
+*.iml
+.project
+.classpath
+
+# Ignore Java compiled files
+*.class
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+
+# Ignore test reports
+/test-output/
+jacoco.exec
+
+# Ignore dependency directories
+/.mvn/
+.mvn/wrapper/maven-wrapper.jar
+
+# Ignore spring boot-specific files
+/hs_err_pid*
