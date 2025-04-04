@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class PaymentRequestDto {
     private Double amount;
-    private String paymentType;
+    private PaymentType paymentType;
 }
