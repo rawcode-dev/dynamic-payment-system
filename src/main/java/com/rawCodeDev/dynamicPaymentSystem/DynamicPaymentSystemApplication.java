@@ -1,4 +1,4 @@
-package com.rawcode_dev.dynamic_payment_system;
+package com.rawCodeDev.dynamicPaymentSystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
