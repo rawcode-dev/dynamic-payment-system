@@ -4,6 +4,7 @@ import com.rawCodeDev.dynamicPaymentSystem.dto.PaymentRequestDto;
 import com.rawCodeDev.dynamicPaymentSystem.dto.PaymentType;
 import com.rawCodeDev.dynamicPaymentSystem.service.PaymentService;
 import com.rawCodeDev.dynamicPaymentSystem.strategy.payment.PaymentStrategy;
+import com.rawCodeDev.dynamicPaymentSystem.strategy.payment.PaymentStrategyRegistry;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -11,18 +12,15 @@ import java.util.Map;
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
-    private final Map<PaymentType, PaymentStrategy> paymentStrategies;
+    private final PaymentStrategyRegistry paymentStrategyRegistry;
 
-    public PaymentServiceImpl(Map<PaymentType, PaymentStrategy> paymentStrategies) {
-        this.paymentStrategies = paymentStrategies;
+    public PaymentServiceImpl(PaymentStrategyRegistry paymentStrategyRegistry) {
+        this.paymentStrategyRegistry = paymentStrategyRegistry;
     }
 
     @Override
     public void processPayment(PaymentRequestDto paymentRequestDto) {
-        PaymentStrategy paymentStrategy = paymentStrategies.get(paymentRequestDto.getPaymentType());
-        if (paymentStrategy == null) {
-            throw new RuntimeException(paymentRequestDto.getPaymentType() + " is not supported yet");
-        }
+        PaymentStrategy paymentStrategy = paymentStrategyRegistry.getPaymentStrategy(paymentRequestDto.getPaymentType());
         paymentStrategy.pay(paymentRequestDto.getAmount());
     }
 }
