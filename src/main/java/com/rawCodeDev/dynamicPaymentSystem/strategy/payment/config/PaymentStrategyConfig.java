@@ -1,6 +1,9 @@
 package com.rawCodeDev.dynamicPaymentSystem.strategy.payment.config;
 
+import com.rawCodeDev.dynamicPaymentSystem.dto.CreditCardRequestDto;
 import com.rawCodeDev.dynamicPaymentSystem.dto.PaymentType;
+import com.rawCodeDev.dynamicPaymentSystem.dto.PaypalRequestDto;
+import com.rawCodeDev.dynamicPaymentSystem.dto.UpiPaymentRequestDto;
 import com.rawCodeDev.dynamicPaymentSystem.strategy.payment.PaymentStrategy;
 import com.rawCodeDev.dynamicPaymentSystem.strategy.payment.impl.CreditCardPaymentStrategy;
 import com.rawCodeDev.dynamicPaymentSystem.strategy.payment.impl.PaypalPaymentStrategy;
@@ -14,14 +17,13 @@ import java.util.Map;
 @Configuration
 public class PaymentStrategyConfig {
 
-    @Bean
-    public Map<PaymentType, PaymentStrategy> paymentStrategy(UpiPaymentStrategy upiPaymentStrategy,
-                                                             CreditCardPaymentStrategy creditCardPaymentStrategy,
-                                                             PaypalPaymentStrategy paymentStrategy){
-        Map<PaymentType, PaymentStrategy> paymentStrategyMap = new HashMap<>();
-        paymentStrategyMap.put(PaymentType.UPI, upiPaymentStrategy);
-        paymentStrategyMap.put(PaymentType.CREDIT_CARD, creditCardPaymentStrategy);
-        paymentStrategyMap.put(PaymentType.PAYPAL, paymentStrategy);
-        return paymentStrategyMap;
+
+    public PaymentStrategyConfig(PaymentStrategyRegistry paymentStrategyRegistry,
+                                 UpiPaymentStrategy upiPaymentStrategy,
+                                 CreditCardPaymentStrategy creditCardPaymentStrategy,
+                                 PaypalPaymentStrategy paypalPaymentStrategy) {
+        paymentStrategyRegistry.register(UpiPaymentRequestDto.class, upiPaymentStrategy);
+        paymentStrategyRegistry.register(CreditCardRequestDto.class, creditCardPaymentStrategy);
+        paymentStrategyRegistry.register(PaypalRequestDto.class, paypalPaymentStrategy);
     }
 }

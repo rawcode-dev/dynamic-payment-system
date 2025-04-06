@@ -3,7 +3,7 @@ package com.rawCodeDev.dynamicPaymentSystem.dto;
 import lombok.Data;
 
 @Data
-public class PaymentRequestDto {
+public abstract class PaymentRequestDto {
     private Double amount;
     private PaymentType paymentType;
 }
