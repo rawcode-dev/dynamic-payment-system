@@ -1,5 +1,7 @@
 package com.rawCodeDev.dynamicPaymentSystem.strategy.payment;
 
-public interface PaymentStrategy {
-    void pay(Double amount);
+import com.rawCodeDev.dynamicPaymentSystem.dto.PaymentRequestDto;
+
+public interface PaymentStrategy<T extends PaymentRequestDto> {
+    void pay(T paymentRequestDto);
 }
